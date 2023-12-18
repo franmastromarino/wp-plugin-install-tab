@@ -18,6 +18,13 @@ use QuadLayers\WP_Plugin_Suggestions\Table;
  */
 class Load {
 
+	/**
+	 * Instance
+	 *
+	 * @var null
+	 */
+	protected static $instance;
+
 	public $data = [
 		"author" => "quadlayers"
 	];
@@ -27,11 +34,20 @@ class Load {
 		add_action( 'install_plugins_quadlayers', array( $this, 'add_tab_content' ) );
 	}
 
+	/**
+	 * Add tab
+	 * @param  array $tabs
+	 * @return array
+	 */
 	public function add_tab( $tabs ) {
 		$tabs['quadlayers'] = 'QuadLayers';
 		return $tabs;
 	}
 
+	/**
+	 * Add tab content
+	 * @return void
+	 */
 	public function add_tab_content() {
 		$wp_list_table = new Table( $this->data );
 		$wp_list_table->prepare_items();
@@ -40,6 +56,18 @@ class Load {
 			<?php $wp_list_table->display(); ?>
 		</form>
 		<?php
+	}
+
+	/**
+	 * Get the instance of the class.
+	 *
+	 * @return self
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 
 }
