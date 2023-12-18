@@ -1,0 +1,48 @@
+{
+	"name": "quadlayers/wp-plugin-install-tab",
+	"description": "WP Plugin Install Tab",
+	"keywords": [
+		"WordPress",
+		"Admin",
+		"Plugin",
+		"Install"
+	],
+	"type": "jetpack-library",
+	"license": "GPL-3.0",
+	"authors": [
+		{
+			"name": "QuadLayers",
+			"email": "noreply@quadlayers.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"config": {
+		"platform": {
+			"php": "7.3.0"
+		},
+		"allow-plugins": {
+			"automattic/jetpack-composer-plugin": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"QuadLayers\\WP_Plugin_Install_Tab\\": "src/"
+		}
+	},
+	"require": {
+		"php": ">=7.1.0",
+		"quadlayers/wp-plugin-suggestions": "*"
+	},
+	"require-dev": {},
+	"extra": {
+		"textdomain": "wp-plugin-install-tab"
+	},
+	"scripts": {
+		"test:phpunit": "./vendor/bin/phpunit phpunit",
+		"build": "composer install --no-dev && composer dump-autoload -o --no-dev",
+		"phpcs:report:csv": "./vendor/bin/phpcs --warning-severity=0 --extensions=php --report=csv --report-file=./phpcs_error.csv ./src",
+		"phpcs:report:txt": "./vendor/bin/phpcs --warning-severity=0 --extensions=php --report-file=./phpcs_error.txt ./src",
+		"phpcs:report:autofix": "./vendor/bin/phpcbf ./src"
+	}
+}

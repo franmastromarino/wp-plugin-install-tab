@@ -1,0 +1,7 @@
+.DS_Store
+vendor
+# Lock
+composer.lock
+# PhpCs
+phpcs_error.txt
+phpcs_error.csv
